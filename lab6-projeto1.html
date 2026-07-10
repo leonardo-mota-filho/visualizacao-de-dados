@@ -1,0 +1,122 @@
+<!--
+	THIS EXAMPLE WAS DOWNLOADED FROM https://echarts.apache.org/examples/en/editor.html?c=area-time-axis&code=bVNNb9swDL3nV_AyOMECw5-JnWKHosOGnjvssKAHJlFSAbJk2HIWb8gf23V_bJRiy2srwBBs6vGR75EWTMMBNcIn2M4Ath8l-wmfUbN5EsXpEmJ6FktIiiiMnpfvEJlDZFEWrjyI3CHSYhWuPYjVVKXMvVXWEyKOw9yDKBxivcrCwoMop07LdVi-RySRQ-RlHKYehLketRS-PpLEIcq08PmRTJ5mq9yLmDxN10WYeBCTp3ni72PyNM1iUjt7vpupWnMladC_Ca6VEprXG_tBnw0_nVizgQAvvA0MIUCtWm5SNnDs5N4mz2u9GFIAGqa7RsK21luaGgRx9CGgOubqSufVsGiuBRurCHbUVGLPpGbNUESzi4l9V6KrGBwY7F-6MwLuu6oTeECQCF_wF5P0-oCNxL9_dkitNYBSgd0fQDCmLAJXlMTt1GUse2RIjbouwC78D6WqKQLQ35PwR3lglBZIJZlhs1JufRq5rVaWxoVaPLP79rHCkw2_ln4xjM7gviZIoHnFBuE71ZGmpv-KNIUjipaNibaVN4lnFJ03c0trS84b68f8SZ75pcGJHKi4bPlh5AKouHyqkYacRi6EQ4h4b5puN2-IWkE84xzJDI0NjZL-oyFAM_uPgk67qC1rOCN5r3uTWBnKb0qjMFvwYLdgXlULxz9UFZxm42pWSumXDe1vx1ysr3ZKjFMco9gwfNK9XUY3P-PUxp5Tj7Pr3T8&enc=deflate
+	⚠ Please be aware that this chart is not an official demo of Apache ECharts but is made by user-generated code.
+-->
+<!DOCTYPE html>
+<html lang="en" style="height: 100%">
+<head>
+  <meta charset="utf-8">
+</head>
+<body style="height: 100%; margin: 0">
+  <div id="container" style="height: 100%"></div>
+
+  
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+  
+  <!-- Uncomment this line if you want to dataTool extension
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5/dist/extension/dataTool.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to use gl extension
+  <script type="text/javascript" src="https://echarts.apache.org/en/js/vendors/echarts-gl/dist/echarts-gl.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to echarts-stat extension
+  <script type="text/javascript" src="https://echarts.apache.org/en/js/vendors/echarts-stat/dist/ecStat.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to echarts-graph-modularity extension
+  <script type="text/javascript" src="https://echarts.apache.org/en/js/vendors/echarts-graph-modularity/dist/echarts-graph-modularity.min.js"></script>
+  -->
+  <!-- Uncomment this line if you want to use map
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@4.9.0/map/js/world.js"></script>
+  -->
+  <!-- Uncomment these two lines if you want to use bmap extension
+  <script type="text/javascript" src="https://api.map.baidu.com/api?v=3.0&ak=YOUR_API_KEY"></script>
+  <script type="text/javascript" src="https://fastly.jsdelivr.net/npm/echarts@5/dist/extension/bmap.min.js"></script>
+  -->
+
+  <script type="text/javascript">
+    var dom = document.getElementById('container');
+    var myChart = echarts.init(dom, null, {
+      renderer: 'canvas',
+      useDirtyRect: false
+    });
+    var app = {};
+    
+    var option;
+
+    let data = [
+  [+new Date(2013, 1, 1), 280.0],
+  [+new Date(2014, 1, 1), 404.6],
+  [+new Date(2015, 1, 1), 386.7],
+  [+new Date(2016, 1, 1), 295.0],
+  [+new Date(2017, 1, 1), 211.5],
+  [+new Date(2018, 1, 1), 764.8],
+  [+new Date(2019, 1, 1), 497.9],
+  [+new Date(2020, 1, 1), 591.3],
+  [+new Date(2021, 1, 1), 388.5],
+  [+new Date(2022, 1, 1), 938.6],
+  [+new Date(2023, 1, 1), 465.6],
+  [+new Date(2024, 1, 1), 378.2],
+  [+new Date(2025, 1, 1), 528.5],
+  [+new Date(2026, 1, 1), 341.9]
+];
+option = {
+  tooltip: {
+    trigger: 'axis',
+    position: function (pt) {
+      return [pt[0], '10%'];
+    }
+  },
+  title: {
+    left: 'center',
+    text: 'Volume de chuva acumulada na Fazenda Carnaúba por ano (2016 a 2025)'
+  },
+  toolbox: {
+    feature: {
+      dataZoom: {
+        yAxisIndex: 'none'
+      },
+      restore: {},
+      saveAsImage: {}
+    }
+  },
+  xAxis: {
+    type: 'time',
+    boundaryGap: false
+  },
+  yAxis: {
+    type: 'value',
+    boundaryGap: [0, '100%']
+  },
+  dataZoom: [
+    {
+      type: 'inside',
+      minSpan: 30,
+      manSpan: 100
+    },
+    {
+      type: 'slider',
+      start: 20,
+      end: 100
+    }
+  ],
+  series: [
+    {
+      name: 'Total de Chuva (mm)',
+      type: 'line',
+      smooth: true,
+      symbol: 'none',
+      areaStyle: {},
+      data: data
+    }
+  ]
+};
+
+
+    if (option && typeof option === 'object') {
+      myChart.setOption(option);
+    }
+
+    window.addEventListener('resize', myChart.resize);
+  </script>
+</body>
+</html>
